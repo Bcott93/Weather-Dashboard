@@ -24,7 +24,7 @@ SO THAT I can plan a trip accordingly
 
 * Create a weather dashboard with form inputs.
   * When a user searches for a city they are presented with current and future conditions for that city and that city is added to the search history
-  * When a user views the current weather conditions for that city they are presented with:
+  * When a user views the currentity weather conditions for that c they are presented with:
     * The city name
     * The date
     * An icon representation of weather conditions
