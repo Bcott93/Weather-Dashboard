@@ -37,30 +37,50 @@ $("#search-button").on("click", function (event) {
             url: weatherQueryURL,
             method: "GET"
         }).then(function (response) {
-          let responseDate = moment(response.list[0].dt_txt).format("Do MMMM YYYY")
-          let responseTemp = $("<div>").append("Temp: ", ((response.list[0].main.temp - 273.15).toFixed(2)  +'&#8451;'))
-          let responseIcon = (response.list[0].weather[0].icon)
+          // Sets the Variable responseData to an array
+          let responseData = []
+          // Loops the Reponse data, and pulls every 8th input
+          for(let i = 0; i < response.list.length; i+=8) {
+          let responseDate = moment(response.list[i].dt_txt).format("Do MMMM YYYY")
+          let responseTemp = $("<div>").append("Temp: ", ((response.list[i].main.temp - 273.15).toFixed(2)  +'&#8451;'))
+          let responseIcon = (response.list[i].weather[0].icon)
           let responseIconShow = "https://openweathermap.org/img/w/" + responseIcon + ".png"
-          let responseHumidity = $("<div>").append("Humidity: ", (response.list[0].main.humidity) + '%')
-          let responseWindSpeed = $("<div>").append("Wind Speed: ", (response.list[0].wind.speed) + ' meters per second')
-            console.log(response);
-            console.log(cityFormated)
-            console.log("Date: ", responseDate)
-            console.log("icon", responseIcon)
-            console.log(responseIconShow)
-            console.log("Temp: ", responseTemp)
-            console.log("Humidity: ", responseHumidity)
-            console.log("Wind Speed: ", responseWindSpeed)
-
+          let responseHumidity = $("<div>").append("Humidity: ", (response.list[i].main.humidity) + '%')
+          let responseWindSpeed = $("<div>").append("Wind Speed: ", (response.list[i].wind.speed) + ' meters per second')
            
-            $("#today").append(cityFormated, " (", responseDate, ")")
-            $("#today").append(responseTemp)
-            $("#today").append(responseWindSpeed)
-            $("#today").append(responseHumidity)
-            $("#wicon").attr('src', responseIconShow)
-           
-            // for(let i = 0; i < response.list.length; i+8)
-            //   console.log(response.list[i].weather[i].icon)
+          responseData.push({
+            date: responseDate,
+            temp: responseTemp,
+            icon: responseIcon,
+            iconShow: responseIconShow,
+            humidity: responseHumidity,
+            windSpeed: responseWindSpeed
+          })
+         
+          if (responseData.length > 0) {
+            $("#weather-container").empty();
+        
+            for (let i = 0; i < responseData.length; i++) {
+                let newSection = $("<div>").addClass("response-section")
+                let cityName = $("<h2>").text(cityFormated + " (" + responseData[i].date + ")")
+                let weatherIcon = $("<img>").attr("src", responseData[i].iconShow)
+                let temp = responseData[i].temp
+                let humidity = responseData[i].humidity
+                let windSpeed = responseData[i].windSpeed
+        
+                newSection.append(cityName, weatherIcon, temp, humidity, windSpeed)
+                $("#weather-container").append(newSection)
+            }
+        }
+            // $("#today").append(cityFormated, " (", responseData[0].date, ")")
+            // $("#today").append(responseTemp)
+            // $("#today").append(responseWindSpeed)
+            // $("#today").append(responseHumidity)
+            // $("#wicon").attr('src', responseIconShow)
+        
+          }
+          
+         
         });
 
      
