@@ -36,13 +36,26 @@ $("#search-button").on("click", function (event) {
             url: weatherQueryURL,
             method: "GET"
         }).then(function (response) {
+          let responseDate = response.list[0].dt_txt
+          let responseTemp = ((response.list[0].main.temp - 273.15).toFixed(2)  +'&#8451;')
+          let responseIcon = (response.list[0].weather[0].icon)
+          let responseIconShow = "http://openweathermap.org/img/w/" + responseIcon + ".png"
+          let responseHumidity = (response.list[0].main.humidity) + '%'
+          let responseWindSpeed = (response.list[0].wind.speed) + ' meters per second'
             console.log(response);
+            console.log(city)
+            console.log("Date: ", responseDate)
+            console.log("icon", responseIcon)
+            console.log(responseIconShow)
+            console.log("Temp: ", responseTemp)
+            console.log("Humidity: ", responseHumidity)
+            console.log("Wind Speed: ", responseWindSpeed)
+            $("#today").append(responseDate)
+            $("#wicon").attr('src', responseIconShow);
+           
         });
 
-        // Sets a variable for the time using moment() and formats
-        let currentDate = moment().format("Do MMMM YYYY")
-        $("#today").append(currentDate)
-        console.log(currentDate)
+     
     });
 });
 
@@ -50,3 +63,7 @@ $("#search-button").on("click", function (event) {
 
 
 
+  //  // Sets a variable for the time using moment() and formats
+  //  let currentDate = moment().format("Do MMMM YYYY")
+  //  $("#today").append(currentDate)
+  //  console.log(currentDate)
