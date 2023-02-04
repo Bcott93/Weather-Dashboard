@@ -14,6 +14,7 @@ $("#search-button").on("click", function (event) {
   event.preventDefault()
   // Adds a variable for the userinput
   const city = $('#search-input').val().trim()
+  const cityFormated = city.charAt(0).toUpperCase() + city.slice(1).toLowerCase()
 
 
   // Sets the URL for the location API, including the variables required
@@ -37,24 +38,29 @@ $("#search-button").on("click", function (event) {
             method: "GET"
         }).then(function (response) {
           let responseDate = moment(response.list[0].dt_txt).format("Do MMMM YYYY")
-          let responseTemp = ((response.list[0].main.temp - 273.15).toFixed(2)  +'&#8451;')
+          let responseTemp = $("<div>").append("Temp: ", ((response.list[0].main.temp - 273.15).toFixed(2)  +'&#8451;'))
           let responseIcon = (response.list[0].weather[0].icon)
           let responseIconShow = "https://openweathermap.org/img/w/" + responseIcon + ".png"
-          let responseHumidity = (response.list[0].main.humidity) + '%'
-          let responseWindSpeed = (response.list[0].wind.speed) + ' meters per second'
+          let responseHumidity = $("<div>").append("Humidity: ", (response.list[0].main.humidity) + '%')
+          let responseWindSpeed = $("<div>").append("Wind Speed: ", (response.list[0].wind.speed) + ' meters per second')
             console.log(response);
-            console.log(city)
+            console.log(cityFormated)
             console.log("Date: ", responseDate)
             console.log("icon", responseIcon)
             console.log(responseIconShow)
             console.log("Temp: ", responseTemp)
             console.log("Humidity: ", responseHumidity)
             console.log("Wind Speed: ", responseWindSpeed)
-            $("#today").append(responseDate)
-            $("#wicon").attr('src', responseIconShow);
+
            
-            for(let i = 0; i < response.list.length; i+8)
-              console.log(response.list[i].weather[i].icon)
+            $("#today").append(cityFormated, " (", responseDate, ")")
+            $("#today").append(responseTemp)
+            $("#today").append(responseWindSpeed)
+            $("#today").append(responseHumidity)
+            $("#wicon").attr('src', responseIconShow)
+           
+            // for(let i = 0; i < response.list.length; i+8)
+            //   console.log(response.list[i].weather[i].icon)
         });
 
      
