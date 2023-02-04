@@ -36,10 +36,10 @@ $("#search-button").on("click", function (event) {
             url: weatherQueryURL,
             method: "GET"
         }).then(function (response) {
-          let responseDate = response.list[0].dt_txt
+          let responseDate = moment(response.list[0].dt_txt).format("Do MMMM YYYY")
           let responseTemp = ((response.list[0].main.temp - 273.15).toFixed(2)  +'&#8451;')
           let responseIcon = (response.list[0].weather[0].icon)
-          let responseIconShow = "http://openweathermap.org/img/w/" + responseIcon + ".png"
+          let responseIconShow = "https://openweathermap.org/img/w/" + responseIcon + ".png"
           let responseHumidity = (response.list[0].main.humidity) + '%'
           let responseWindSpeed = (response.list[0].wind.speed) + ' meters per second'
             console.log(response);
@@ -53,6 +53,8 @@ $("#search-button").on("click", function (event) {
             $("#today").append(responseDate)
             $("#wicon").attr('src', responseIconShow);
            
+            for(let i = 0; i < response.list.length; i+8)
+              console.log(response.list[i].weather[i].icon)
         });
 
      
