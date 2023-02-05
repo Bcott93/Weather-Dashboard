@@ -7,14 +7,20 @@ const searchBtn = $("#search-button")
 // let apiKey = "a0822daa77d2fe015266567cae2f77a3"
 const tempKey = "d91f911bcf2c0f925fb6535547a5ddc9"
 
-
 // Adds a click event to the search button
 $("#search-button").on("click", function (event) {
   // Stops the page from refreshing upon input.
   event.preventDefault()
   // Adds a variable for the userinput
   const city = $('#search-input').val().trim()
-  const cityFormated = city.charAt(0).toUpperCase() + city.slice(1).toLowerCase()
+  // Formats the user input
+  const cityFormatted= city.charAt(0).toUpperCase() + city.slice(1).toLowerCase()
+  // Creates a variable to add the history to the left side of the document
+  const historyBtn = $("<button>")
+  // Adds a name to the created button
+  historyBtn.text(cityFormatted)
+  // Adds the button to the HTML document
+  $("#history").append(historyBtn)
 
 
   // Sets the URL for the location API, including the variables required
@@ -62,7 +68,7 @@ $("#search-button").on("click", function (event) {
         
             for (let i = 0; i < responseData.length; i++) {
                 let newSection = $("<div>").addClass("response-section")
-                let cityName = $("<h2>").text(cityFormated + " (" + responseData[i].date + ")")
+                let cityName = $("<h2>").text(cityFormatted + " (" + responseData[i].date + ")")
                 let weatherIcon = $("<img>").attr("src", responseData[i].iconShow)
                 let temp = responseData[i].temp
                 let humidity = responseData[i].humidity
@@ -70,16 +76,14 @@ $("#search-button").on("click", function (event) {
         
                 newSection.append(cityName, weatherIcon, temp, humidity, windSpeed)
                 $("#weather-container").append(newSection)
+
+                
+                
             }
         }
-            // $("#today").append(cityFormated, " (", responseData[0].date, ")")
-            // $("#today").append(responseTemp)
-            // $("#today").append(responseWindSpeed)
-            // $("#today").append(responseHumidity)
-            // $("#wicon").attr('src', responseIconShow)
         
           }
-          
+         
          
         });
 
