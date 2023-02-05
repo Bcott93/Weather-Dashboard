@@ -35,8 +35,8 @@ $("#search-button").on("click", function (event) {
   // Runs the create history button function
   createHistoryBtn(cityFormatted)
   // Runs the function to populate the on click function
-  getWeatherData(cityFormatted);
-}); 
+  getWeatherData(cityFormatted)
+})
 
 // Creates a function which finds the required weather data
 function getWeatherData(cityFormatted) {
@@ -111,7 +111,8 @@ function getWeatherData(cityFormatted) {
   })
  })
 }  
-        
+
+
   
     
 
