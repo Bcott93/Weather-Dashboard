@@ -1,11 +1,25 @@
 // Initiates Jquery
-$(document).ready
+$(document).ready()
 
 // Creates a variable for the search button in HTML
 const searchBtn = $("#search-button")
 
 // My key to access the data from Openweathers API's
 const apiKey = "a0822daa77d2fe015266567cae2f77a3"
+
+// //  // Check if the history buttons have been stored in local storage before
+// //  if (localStorage.getItem("history")) {
+// //   // If yes, get the stored history buttons
+// //   let historyStorage = JSON.parse(localStorage.getItem("history"))
+// //   // Add each history button to the history container
+// //   historyStorage.forEach(function(historyStorage) {
+// //     $("#history").append(historyStorage)
+// //   });
+
+  
+ 
+// }
+
 
 // Creates a function to show userInput history
 function createHistoryBtn(cityFormatted) {
@@ -105,6 +119,14 @@ function getWeatherData(cityFormatted) {
         // Appends all the variables and adds them to the HTML
         newDiv.append(cityName, weatherIcon, temp, humidity, windSpeed)
         $("#weather-container").append(newDiv)
+
+        let historyStorage = []
+        // Runs the create history button function
+        createHistoryBtn(cityFormatted)
+        // Runs the function to populate the on click function
+        getWeatherData(cityFormatted)
+        localStorage.setItem("history", JSON.stringify(historyStorage))
+        
       }
      }
     }
