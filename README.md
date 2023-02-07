@@ -4,22 +4,29 @@ I was employed to create a website which can show the 5 day weather forecast for
 
 ## The Goal
 
-The objective was to present a 5 day weather forecast of a user defined City
+The objective was to present a 5 day weather forecast of a user defined City.
 
 The important aspects were:
 
-    - The current date at the top of the page,
-    - Colour coded timeblocks for the work day, seperating past, present and future,
-    - User input into the description field,
-    - Access to the data should they refresh the page.
+    - Using OpenWeather API to retrieve the location and weather.
+    - Show multiple weather attributes:
+        - The city name
+        - The date
+        - The temperature
+        - The icon showing the current weather
+        - The humidity
+        - The wind speed
+    - Once a search has been completed, save it in a history tab.
+    
 
 ## Usage
 
 To view the project, please follow the below links:
 
-https://bcott93.github.io/Work-Day-Scheduler/
+https://bcott93.github.io/Weather-Dashboard/
 
-![Sample Code](assets/images/Sample%20Code.jpg)
+
+![Sample Code](assets\images\sample-code.jpg)
 
 ## License
 
