@@ -1,6 +1,6 @@
 # Weather-Dashboard
 
-I was employed to create a website which can show the 5 day weather forecast for any city in the world. To enable travelers to plan their trips. 
+I was employed to create a website which can show the 5 day weather forecast for any city in the world. To enable travelers to plan their trips.
 
 ## The Goal
 
@@ -17,7 +17,6 @@ The important aspects were:
         - The humidity
         - The wind speed
     - Once a search has been completed, save it in a history tab.
-    
 
 ## Usage
 
@@ -25,8 +24,7 @@ To view the project, please follow the below links:
 
 https://bcott93.github.io/Weather-Dashboard/
 
-
-![Sample Code](assets\images\sample-code.jpg)
+![Sample Code](assets/images/sample-code.jpg)
 
 ## License
 
