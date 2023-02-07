@@ -42,7 +42,7 @@ $("#search-button").on("click", function (event) {
 // Creates a function which finds the required weather data
 function getWeatherData(cityFormatted) {
   // Sets the URL for the location API, including the variables required
-  let geoQueryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityFormatted + "&appid=" + apiKey
+  let geoQueryURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityFormatted + "&appid=" + apiKey
   // Uses Jquery to pull the data from the API
   $.ajax({
       url: geoQueryURL,
@@ -53,7 +53,7 @@ function getWeatherData(cityFormatted) {
     let latitude = response[0].lat.toFixed(2)
     let longitude = response[0].lon.toFixed(2)
      // Sets the URL for the location API, including the variables required
-    let weatherQueryURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey
+    let weatherQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey
   
       // Uses Jquery to pull the data from the API
       $.ajax({
